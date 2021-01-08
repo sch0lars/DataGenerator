@@ -1,20 +1,25 @@
 # Data Generator
 Written By: Tyler Hooks 
 
+## Description
+This script reads a formatted Excel file and generates random test data in the form of SQL insert statements and writes the SQL to a file called **inserts.sql**.
+
 ## Usage
+`python generator.py [-h] [-n rows]`
+
 This script requires an Excel workbook called **tables.xlsx** to be in the same directory as the **generator.py** file.
 
 The Excel workbook ***must*** have a sheet for each table, with the sheet having the same name as the table. For example, if you are writing data for tables, **CustomerTB** and **SalesTB**, then you must have two worksheets called **CustomerTB** and **SalesTB** in the workbook.
 
 The columns must adhere to the following format:
 
-| | |
-| - | - |
+| | | |
+| - | - | - |
 | Data Field | Pattern | Alias (Optional) |
-| Data Field | Pattern | Alias (Optional)
-| Data Field | Pattern | Alias (Optional)
-| Data Field | Pattern | Alias (Optional)
-| Data Field | Pattern | Alias (Optional)
+| Data Field | Pattern | Alias (Optional) |
+| Data Field | Pattern | Alias (Optional) |
+| Data Field | Pattern | Alias (Optional) |
+| Data Field | Pattern | Alias (Optional) |
 
 **NO HEADERS ARE REQUIRED.**
 
@@ -31,6 +36,7 @@ Patterns are used to generate specific, yet random, data. Each pattern must be f
 * **[a-z]\{n\}** - Generate *n* number of lowercase alphabetical characters.
 * **[A-Z]\{n\}** - Generate *n* number of uppercase alphabetical characters.
 * **[\{lower\}-\{upper\}]\{n\}** - Generate *n* number of integers or decimals between *\{lower\}* and *\{upper\}*.
+* **{{alphanum}}\{n\}** - Generate *n* number of alphanumeric characters.
 * **[a, b, c, 1, 2, 3]\{n\}** - Generate *n* number of items from the list.
 * **{{first_name}}** - Generate a random first name.
 * **{{last_name}}** - Generate a random last name.
