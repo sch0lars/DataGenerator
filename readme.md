@@ -38,6 +38,7 @@ Patterns are used to generate specific, yet random, data. Each pattern must be f
 * **[\{lower\}-\{upper\}]\{n\}** - Generate *n* number of integers or decimals between *\{lower\}* and *\{upper\}*.
 * **{{alphanum}}\{n\}** - Generate *n* number of alphanumeric characters.
 * **[a, b, c, 1, 2, 3]\{n\}** - Generate *n* number of items from the list.
+* **{{MM-DD-YYYY}}** - Generate a date between the last 20 years and today. Supports zero-padded (MM) and non-zero-padded (M) values, as well as half-year (YY) and full-year (YYYY) formats. Supports both dash and forward slash separators in different formats (e.g., YYYY-MM-DD, DD/MM/YY, etc.). **Date formats must be capitalized (*MM*, not *mm*). 
 * **{{first_name}}** - Generate a random first name.
 * **{{last_name}}** - Generate a random last name.
 * **{{email}}** - Generate a random email address.

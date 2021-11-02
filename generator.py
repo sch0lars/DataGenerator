@@ -1,4 +1,5 @@
 import argparse
+from datetime import datetime
 import openpyxl
 import random
 import re
@@ -97,6 +98,30 @@ def replace_names(pattern: str, first_name: str, last_name) -> str:
     pattern = pattern.replace('{{email}}', email)
     pattern = pattern.replace('{{primary_address}}', primary_address)
     pattern = pattern.replace('{{primary_address}}', secondary_address)
+    return pattern
+
+# Replace dates.
+def replace_dates(pattern: str) -> str:
+    for sub_pattern in re.findall(r'{{[MDY\-\/]+}}', pattern):
+        replacement = re.findall(r'(?<={{)[MDY\-\/]+(?=}})', sub_pattern)[0]
+        month = str(random.randint(1, 12))
+        day = str(random.randint(1, 28 if month == 2 else 30 if month in [4, 6, 9] else 31))
+        current_year = datetime.now().year
+        year = str(random.randint(current_year - 20, current_year))
+
+        # Replace the month
+        replacement = replacement.replace('MM', f'{month:0>2}')       # Zero-padded
+        replacement = replacement.replace('M', month)                 # Non-zer-padded
+        # Replace the day
+        replacement = replacement.replace('DD', f'{day:0>2}')         # Zero-padded
+        replacement = replacement.replace('D', day)                   # Non-zero-padded
+        # Replace the year
+        replacement = replacement.replace('YYYY', year)               # Full year format
+        replacement = replacement.replace('YY', year[:2])             # Half year format
+
+        # Replace the sub-pattern with the replacement
+        pattern = pattern.replace(sub_pattern, replacement, 1)
+
     return pattern
 
 
