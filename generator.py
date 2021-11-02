@@ -162,6 +162,7 @@ for i in range(n):
             pattern = replace_digits(pattern)
             pattern = replace_decimals(pattern)
             pattern = replace_alphanum(pattern)
+            pattern = replace_dates(pattern)
             pattern = replace_lists(pattern)
             pattern = replace_names(pattern, first_name, last_name)
             # Add the alias if one is set.
